@@ -27,6 +27,9 @@ export const arcjetProtection = async (req, res, next) => {
         });
     }
 
+    if (req.ip === "127.0.0.1") return next();
+    if (process.env.NODE_ENV !== "production") return next();
+
     next();
   } catch (error) {
     console.log("Arcjet Protection Error :", error);
