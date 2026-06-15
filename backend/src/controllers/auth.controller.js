@@ -50,7 +50,7 @@ export const signup = async (req, res) => {
 
       // send welcome email to the new user
       try {
-        await sendWelcomeEmail(newUser.email, newUser.fullName, ENV.CLIENT_URL);
+        // await sendWelcomeEmail(newUser.email, newUser.fullName, ENV.CLIENT_URL);
       } catch (error) {
         console.log("Failed to send welcome email", error);
       }
