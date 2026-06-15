@@ -1,18 +1,17 @@
-import { resendClient, sender } from "../lib/resend.js"
 import { createWelcomeEmailTemplate } from "../emails/emailTemplate.js";
+import { smtpClient } from "../lib/smtp.js";
 
-export const sendWelcomeEmail = async (email,name,clientURL) =>{
-    const {data,error} = await resendClient.emails.send({
-        from : `${sender.name} <${sender.email}>`,
-        to : email,
-        subject : "Welcome to Chatify! 🎉",
-        html : createWelcomeEmailTemplate(name,clientURL)
-    })
+export const sendWelcomeEmail = async (email, name, clientURL) => {
+  try {
+    await smtpClient.sendMail({
+      from: `"INBAVARUNAN S" <${process.env.SMTP_USER}>`,
+      to: email,
+      subject: "Welcome to Chatify! 🎉",
+      html: createWelcomeEmailTemplate(name, clientURL),
+    });
 
-    if(error){
-        console.error("Error in sending welcome Email (Resend API error): ", error);
-        throw new Error("Failed to send welcome email");
-    }
-
-    console.log("Welcome email sent successfully", data); 
-}
+    console.log("Welcome email sent");
+  } catch (err) {
+    console.error("Email failed:", err);
+  }
+};

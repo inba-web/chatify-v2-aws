@@ -18,5 +18,8 @@
   "bugs": {
     "url": "https://github.com/inba-web/chatify/issues"
   },
-  "homepage": "https://github.com/inba-web/chatify#readme"
+  "homepage": "https://github.com/inba-web/chatify#readme",
+  "dependencies": {
+    "nodemailer": "^9.0.0"
+  }
 }
