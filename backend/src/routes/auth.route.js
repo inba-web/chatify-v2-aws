@@ -15,9 +15,10 @@ const router = express.Router();
 // router.post("/login", login);
 // router.post("/logout", logout);
 
-router.post("/signup", arcjetProtection, signup);
-router.post("/login", arcjetProtection, login);
-router.post("/logout", arcjetProtection, logout);
+router.post("/signup", signup);
+router.post("/login", login);
+
+router.post("/logout", protectRoute, logout);
 
 router.put("/update-profile", protectRoute, updateProfile);
 
