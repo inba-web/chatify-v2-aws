@@ -32,6 +32,10 @@ if (ENV.NODE_ENV === "production") {
   });
 }
 
+app.get("/", (req, res) => {
+  res.send("API is running...");
+});
+
 server.listen(PORT, () => {
   connectDB();
   console.log("Server Running on Port 3000 ");

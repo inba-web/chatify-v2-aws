@@ -9,7 +9,6 @@ export const signup = async (req, res) => {
   try {
     const { fullName, email, password } = req.body;
 
-    // Validation
     if (!fullName || !email || !password) {
       return res.status(400).json({
         message: "All fields are required",
@@ -30,7 +29,6 @@ export const signup = async (req, res) => {
       });
     }
 
-    // Check existing user
     const existingUser = await User.findOne({ email });
 
     if (existingUser) {
@@ -39,21 +37,17 @@ export const signup = async (req, res) => {
       });
     }
 
-    // Hash password
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
 
-    // Create user
     const newUser = await User.create({
       fullName,
       email,
       password: hashedPassword,
     });
 
-    // Generate JWT cookie
     generateToken(newUser._id, res);
 
-    // Send response first
     res.status(201).json({
       _id: newUser._id,
       fullName: newUser.fullName,
@@ -61,7 +55,6 @@ export const signup = async (req, res) => {
       profilePic: newUser.profilePic,
     });
 
-    // Send welcome email in background
     sendWelcomeEmail(
       newUser.email,
       newUser.fullName,
@@ -73,7 +66,6 @@ export const signup = async (req, res) => {
   } catch (error) {
     console.error("Error in signup controller:", error);
 
-    // Handle Mongo duplicate key errors
     if (error.code === 11000) {
       return res.status(400).json({
         message: "User already exists",
