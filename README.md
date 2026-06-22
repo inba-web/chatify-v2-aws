@@ -2,7 +2,7 @@
 
 Chatify is a modern, real-time chat application designed to deliver a seamless, secure, and responsive messaging experience. Built with a scalable architecture and a clean UI, Chatify supports real-time presence, media sharing, email notifications, and smooth user interactions.
 
-This project reflects a production-oriented mindset with a focus on performance, maintainability, and user experience.
+This project reflects a production-oriented AWS with a focus on performance, maintainability, and user experience.
 
 ---
 
