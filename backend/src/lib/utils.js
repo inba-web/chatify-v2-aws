@@ -10,8 +10,8 @@ export const generateToken = (userId,res) => {
         maxAge: 7*24*60*60*1000,
         httpOnly: true, // prevent xss attack 
         sameSite: "strict",  // prevent csrf attack
-        // secure: ENV.NODE_ENV === "development" ? false : true,
-        secure: false, // for ec2 testing
+        secure: ENV.NODE_ENV === "development" ? false : true,
+        // secure: false, // for ec2 testing
     });
     return token;
 } 

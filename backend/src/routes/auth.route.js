@@ -9,7 +9,7 @@ import {
 } from "../controllers/auth.controller.js";
 const router = express.Router();
 
-// router.use(arcjetProtection);
+router.use(arcjetProtection);
 
 // router.post("/signup", signup);
 // router.post("/login", login);

@@ -9,7 +9,9 @@ const server = http.createServer(app);
 
 const io = new Server(server, {
   cors: {
-    origin: [ENV.CLIENT_URL, "http://localhost:3000"],
+    origin: ENV.NODE_ENV === "production"
+      ? "https://chatify.ddns.net"
+      : "http://localhost:5173",
     credentials: true,
   },
 });
